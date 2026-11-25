@@ -49,5 +49,35 @@ public class CalculadoraRedox {
 
         sc.close();
     }
+    // Como un elevador: si sube (+), se oxida; si baja (-), se reduce
+    public static void analizarCambioElemento(Scanner sc) {
+        System.out.print("Elemento (ej. Mn, Fe): ");
+        String elemento = sc.nextLine();
 
-   
+        System.out.print("Estado inicial (reactivos): ");
+        int oxInicial = sc.nextInt();
+
+        System.out.print("Estado final (productos): ");
+        int oxFinal = sc.nextInt();
+
+        System.out.print("Cantidad de atomos: ");
+        int atomos = sc.nextInt();
+        sc.nextLine();
+
+        int cambio = oxFinal - oxInicial;
+        int electrones = Math.abs(cambio) * atomos;
+
+        System.out.println("\n--- RESULTADO ---");
+        System.out.println("Elemento: " + elemento + " (" + oxInicial + " -> " + oxFinal + ")");
+
+        if (cambio > 0) {
+            System.out.println("Proceso: OXIDACION (agente reductor)");
+            System.out.println("Pierde " + electrones + " electrones");
+        } else if (cambio < 0) {
+            System.out.println("Proceso: REDUCCION (agente oxidante)");
+            System.out.println("Gana " + electrones + " electrones");
+        } else {
+            System.out.println("Proceso: Sin cambio redox");
+        }
+    }
+
